@@ -3,74 +3,35 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="https://cdn.tailwindcss.com"></script> <!-- Si vous utilisez le CDN Tailwind -->
-    <title>Mon Site Django</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" , shrink-to-fit=no, user-scalable=no,
+        maximum-scale=1>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Nouvel An 2026 – Feux d’artifice interactifs en live</title>
+    <link rel="icon" type="favicon.ico" href="2026.png">
+
+    <meta name="description" content="Feux d’artifice interactifs pour le Nouvel An 2026 ! Cliquez, admirez les animations et vivez le passage à la nouvelle année en direct 🎉">
+
+    <style>
+        body {
+            cursor: url('cursor.png') 16 16, auto;
+        }
+    </style>
 </head>
 
 <body class="bg-black text-white">
-
-    <!-- Conteneur des feux d'artifice (fixe et en arrière-plan) -->
+    <!-- Feux d'artifice -->
     <div id="fireworks-container" class="fixed inset-0 pointer-events-auto z-0"></div>
 
-    <!-- Votre contenu principal -->
+    <!-- Contenu principal -->
     <main class="relative z-10 flex flex-col items-center justify-center min-h-screen pointer-events-none">
-        <h1 class="text-5xl font-bold text-yellow-400">Bonne Année 2025 !</h1>
-        <p class="mt-4">Feux d'artifice sans React.</p>
+        <h1 id="date" class="font-bold text-yellow-400 text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-center"></h1>
+        <p id="time" class="mt-4 text-gray-300 text-2xl sm:text-3xl md:text-4xl lg:text-5xl"></p>
     </main>
 
-    <!-- Inclusion de Fireworks.js via CDN -->
+    <!-- Fireworks.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.x/dist/index.umd.js"></script>
 
-    <script>
-        const container = document.getElementById('fireworks-container');
-
-        const fireworks = new Fireworks.default(container, {
-            autoresize: true,
-            opacity: 0.5,
-            acceleration: 1.05,
-            friction: 0.97,
-            gravity: 1.5,
-            particles: 50,
-            traceLength: 3,
-            traceSpeed: 10,
-            explosion: 10,
-            intensity: 30,
-            flickering: 50,
-            lineStyle: 'round',
-            hue: { min: 0, max: 360 },
-            delay: { min: 30, max: 60 },
-            rocketsPoint: { min: 50, max: 50 },
-            lineWidth: {
-                explosion: { min: 1, max: 3 },
-                trace: { min: 1, max: 5 }
-            },
-            brightness: { min: 50, max: 80 },
-            decay: { min: 0.015, max: 0.03 },
-            // --- NOUVELLES OPTIONS AJOUTÉES ---
-            mouse: {
-                click: true,      // Génère un feu au clic
-                move: false,     // Ne suit pas la souris (évite le spam)
-                max: 3           // 3 fusées max par clic
-            },
-            sound: {
-                enabled: false,   // Désactivé, on gère le son manuellement
-                files: [],
-                volume: { min: 4, max: 8 }
-            }
-        });
-
-        fireworks.start();
-
-        // Ajouter le son manuellement au clic
-        container.addEventListener('click', () => {
-            const audio = new Audio('https://cdn.freesound.org/previews/251/251614_4040997-lq.mp3');
-            audio.volume = 0.5;
-            audio.play().catch(e => console.log('Erreur de lecture du son:', e));
-        });
-
-        // Petit rappel pour l'utilisateur
-        console.log("Cliquez sur la page pour activer le son et lancer des fusées !");
-    </script>
+    <script src="script.js"></script>
 
 </body>
 
