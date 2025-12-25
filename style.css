@@ -17,7 +17,7 @@ body {
   }
 
   100% {
-    transform: translate(-50%, -400px) scale(1.9);
+    transform: translate(-50%, -500px) scale(1.9);
     opacity: 0;
   }
 }
