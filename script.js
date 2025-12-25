@@ -37,37 +37,61 @@ const fireworks = new Fireworks.default(container, {
 
 fireworks.start();
 
-// 🔊 Son BOUM en intervalle
+// Son BOUM en intervalle
 const boomBg = new Audio("boom.m4a");
-boomBg.volume = 0.6;
+boomBg.volume = 1;
 
-let boomInterval = null;
 let audioStarted = false;
 
-function startBoomInterval() {
-  if (boomInterval) return;
-
-  boomInterval = setInterval(() => {
-    const boom = boomBg.cloneNode();
-    boom.volume = 1;
-    boom.play().catch(() => {});
-  }, 13000); //
+function playBoomLoop() {
+  boomBg.currentTime = 0;
+  boomBg.play().catch(() => {});
 }
 
+// Relance le son à la fin
+boomBg.addEventListener("ended", () => {
+  setTimeout(() => {
+    playBoomLoop();
+  }, 0);
+});
+
+
+
+
+
+// Gestion des emojis au clic
+function createEmoji(x, y) {
+  const container = document.getElementById("emoji-container");
+  const emoji = document.createElement("span");
+  emoji.className = "emoji-pop";
+
+  const emojis = ["💥", "🎈", "˗ˏˋ★ˎˊ˗", "ミ★ 𝟐𝟎𝟐𝟔 ★彡"];
+  emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+  emoji.style.left = x + "px";
+  emoji.style.top = y + "px";
+
+  container.appendChild(emoji);
+
+  // suppression en 17s
+  setTimeout(() => emoji.remove(), 1700);
+}
+
+
 // Son manuel au clic
-container.addEventListener("click", () => {
+container.addEventListener("click", (e) => {
   const audio = new Audio(
     "https://cdn.freesound.org/previews/251/251614_4040997-lq.mp3"
   );
   audio.volume = 1;
   audio.play().catch((e) => console.log("Erreur de lecture du son:", e));
 
-  if (!audioStarted) {
-    const firstBoom = boomBg.cloneNode();
-    firstBoom.volume = 0.6;
-    firstBoom.play().catch(() => {});
+  // emoji au clic
+  setTimeout(() => {
+    createEmoji(e.clientX, e.clientY);
+  }, 500); 
 
-    startBoomInterval();
+  if (!audioStarted) {
+    playBoomLoop();
     audioStarted = true;
   }
 });
