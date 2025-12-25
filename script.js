@@ -37,13 +37,39 @@ const fireworks = new Fireworks.default(container, {
 
 fireworks.start();
 
+// 🔊 Son BOUM en intervalle
+const boomBg = new Audio("boom.m4a");
+boomBg.volume = 0.6;
+
+let boomInterval = null;
+let audioStarted = false;
+
+function startBoomInterval() {
+  if (boomInterval) return;
+
+  boomInterval = setInterval(() => {
+    const boom = boomBg.cloneNode();
+    boom.volume = 1;
+    boom.play().catch(() => {});
+  }, 13000); //
+}
+
 // Son manuel au clic
 container.addEventListener("click", () => {
   const audio = new Audio(
     "https://cdn.freesound.org/previews/251/251614_4040997-lq.mp3"
   );
-  audio.volume = 0.5;
+  audio.volume = 1;
   audio.play().catch((e) => console.log("Erreur de lecture du son:", e));
+
+  if (!audioStarted) {
+    const firstBoom = boomBg.cloneNode();
+    firstBoom.volume = 0.6;
+    firstBoom.play().catch(() => {});
+
+    startBoomInterval();
+    audioStarted = true;
+  }
 });
 
 // Mise à jour de la date et de l'heure
