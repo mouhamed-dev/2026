@@ -65,7 +65,7 @@ function createEmoji(x, y) {
   const emoji = document.createElement("span");
   emoji.className = "emoji-pop";
 
-  const emojis = ["💥", "🎈", "˗ˏˋ 𝟐𝟎𝟐𝟔 ˎˊ˗", "ミ★ ★ ★彡"];
+  const emojis = ["💥", "🎈", "˗ˏˋ 𝟐𝟎𝟐𝟔 ˎˊ˗", "✩₊˚.⋆☾⋆⁺₊✧"];
   emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
   emoji.style.left = x + "px";
   emoji.style.top = y + "px";
