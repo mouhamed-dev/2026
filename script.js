@@ -45,7 +45,7 @@ let audioStarted = false;
 
 function playBoomLoop() {
   boomBg.currentTime = 0;
-  boomBg.play().catch(() => {});
+  boomBg.play().catch(() => { });
 }
 
 // Relance le son à la fin
@@ -88,7 +88,7 @@ container.addEventListener("click", (e) => {
   // emoji au clic
   setTimeout(() => {
     createEmoji(e.clientX, e.clientY);
-  }, 500); 
+  }, 500);
 
   if (!audioStarted) {
     playBoomLoop();
@@ -124,3 +124,12 @@ function updateDateTime() {
 
 updateDateTime();
 setInterval(updateDateTime, 1000);
+
+let angle = 0;
+function animate() {
+  angle = (angle + 2) % 360;
+  document.body.style.setProperty('--angle', `${angle}deg`);
+  requestAnimationFrame(animate);
+}
+
+animate(); 

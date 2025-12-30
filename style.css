@@ -1,5 +1,43 @@
 body {
-    cursor: url('cursor.png') 16 16, auto;
+  cursor: url('cursor.png') 16 16, auto;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+/* Création de la bordure sur tout le viewport */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: conic-gradient(from var(--angle, 0deg),
+      #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+  z-index: -2;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  background-color: black;
+  z-index: -1;
+  border-radius: 5px;
 }
 
 .emoji-pop {

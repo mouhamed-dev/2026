@@ -16,11 +16,16 @@
 
 <body class="bg-black text-white">
     <!-- Feux d'artifice -->
-    <div id="fireworks-container" class="fixed inset-0 pointer-events-auto z-0"></div>
-    <div id="emoji-container" class="fixed inset-0 pointer-events-none z-10"></div>
+    <div id="fireworks-container" class="fixed inset-0 pointer-events-auto z-20"></div>
+    <div id="emoji-container" class="fixed inset-0 pointer-events-none z-30"></div>
 
     <!-- Contenu principal -->
-    <main class="relative z-10 flex flex-col items-center justify-center min-h-screen pointer-events-none">
+    <main class="relative z-0 flex flex-col items-center justify-center min-h-screen pointer-events-none">
+        <div class="relative w-full bottom-10 h-40 overflow-hidden">
+            <div class="absolute inset-0 flex pt-10 justify-center">
+                <img src="new_year_2026.png" alt="new_year_2026" class="h-28 animate-bounce object-contain z-10">
+            </div>
+        </div>
         <h1 id="date" class="font-bold text-yellow-400 text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-center"></h1>
         <p id="time" class="mt-4 text-gray-300 text-2xl sm:text-3xl md:text-4xl lg:text-5xl"></p>
     </main>
